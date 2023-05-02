@@ -28,11 +28,11 @@ Auth::routes([
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('quiz/{quizId}', [App\Http\Controllers\ExamController::class, 'getQuizQuestions'])->middleware('auth');
+Route::get('user/quiz/{quizId}', [App\Http\Controllers\ExamController::class, 'getQuizQuestions'])->middleware('auth');
 
 Route::post('quiz/create', [App\Http\Controllers\ExamController::class, 'postQuiz'])->middleware('auth');
 
-Route::post('/result/user/{userId}/quiz/{quizId}', [App\Http\Controllers\ExamController::class, 'viewResult'])->middleware('auth');
+Route::get('/result/user/{userId}/quiz/{quizId}', [App\Http\Controllers\ExamController::class, 'viewResult'])->middleware('auth');
 
 
 
@@ -52,5 +52,7 @@ Route::middleware('isAdmin')->group(function(){
     Route::post('exam/assign', [App\Http\Controllers\ExamController::class, 'assignExam'])->name('exam.assign');
     Route::get('exam/user', [App\Http\Controllers\ExamController::class, 'userExam'])->name('view.exam');
     Route::post('exam/remove', [App\Http\Controllers\ExamController::class, 'removeExam'])->name('exam.remove');
+    Route::get('result', [App\Http\Controllers\ExamController::class, 'result'])->name('result');
+    Route::get('result/{userId}/{quizId}', [App\Http\Controllers\ExamController::class, 'userQuizResult']);
 
 });

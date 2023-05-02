@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row">
         @if(Session::has('error'))
          <div class="alert alert-danger">{{Session::get('error')}}</div>
 
@@ -10,7 +10,7 @@
         <div class="col-md-8">
             <div class="card">
                 <!-- <example-component></example-component> -->
-                <div class="card-header">{{ __('Dashboard') }}</div>
+                <div class="card-header">{{ __('Exam') }}</div>
                 @if($isExamAssigned)
                 @foreach($quizzes as $quiz)
 
@@ -23,10 +23,11 @@
 
                       @if(!in_array($quiz->id,$wasQuizCompleted))
 
-                      <a href="/quiz/{{$quiz->id}}">
+                      <a href="user/quiz/{{$quiz->id}}">
                         <button class="btn btn-success">Start Quiz</button>
                       </a>
                       @else
+                      <a href="/result/user/{{auth()->user()->id}}/quiz/{{$quiz->id}}">View Result</a>
                       <span style="float:right;" class="float-right">Completed</span>
                       @endif
 
@@ -37,6 +38,17 @@
                 <p>You have not been assigned any exam</p>
 
                 @endif
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">User Profile</div>
+                <div class="card-body">
+                    <p>Email: {{auth()->user()->email}}</p>
+                    <p>Occupation: {{auth()->user()->occupation}}</p>
+                    <p>Address: {{auth()->user()->address}}</p>
+                    <p>Phone: {{auth()->user()->phone}}</p>
+                </div>
             </div>
         </div>
     </div>

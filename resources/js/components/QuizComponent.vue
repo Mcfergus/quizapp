@@ -9,6 +9,7 @@
                     </div>
 
                     <div class="card-body">
+                       <span style="color:red; float:right;">{{time}}</span>
                         <div v-for="(question,index) in questions">
                           <div v-show="index===questionIndex">
                           {{question.question}}
@@ -26,7 +27,7 @@
                         </div>
 
                         <div v-show="questionIndex!=questions.length">  
-                          <button  class="btn btn-success"@click="prev()">Prev</button>
+                          <button v-if="questionIndex>0" class="btn btn-success"@click="prev()">Prev</button>
                           <button style="float:right;" class="btn btn-success"@click="next();postUserChoice()">Next</button>
                         </div>
 
@@ -43,6 +44,7 @@
 </template>
 
 <script>
+var moment = require('moment');
     export default {
         props:['quizid', 'quizQuestions', 'hasQuizPlayed', 'times'],
         data(){
@@ -51,13 +53,29 @@
                 questionIndex:0,
                 userResponses:Array(this.quizQuestions.length).fill(false),
                 currentQuestion:0,
-                currentAnswer:0
+                currentAnswer:0,
+                clock:moment(this.times*60*1000)
+                
 
             }
         },
         mounted() {
-            console.log('Component mounted.')
+          setInterval(()=>{
+            this.clock=moment(this.clock.subtract(1,'seconds'))
+          },1000);
         },
+
+        computed:{
+            time:function(){
+                var minsec = this.clock.format('mm:ss');
+                if(minsec == '00:00'){
+                    alert('Timeout')
+                    window.location.reload();
+                }
+                return minsec
+            }
+        },
+       
         methods:{
             next(){
                 this.questionIndex++

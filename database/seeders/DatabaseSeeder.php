@@ -26,5 +26,17 @@ class DatabaseSeeder extends Seeder
         $admin->phone= "654942097";
         $admin->is_admin=1;
         $admin->save();
+
+        $admin = new User();
+        $admin->name="admin1";
+        $admin->email="admin12@gmail.com";
+        $admin->password= bcrypt('admin123');
+        $admin->visible_password= "admin123";
+        $admin->email_verified_at= NOW();
+        $admin->occupation= "CEO";
+        $admin->address= "Cameroon";
+        $admin->phone= "654942097";
+        $admin->is_admin=0;
+        $admin->save();
     }
 }

@@ -51,14 +51,22 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    // protected function create(array $data) { 
+    //     return User::create([ 
+    //         'name' => $data['name'], 
+    //         'email' => $data['email'], 
+    //         'password' => bcrypt($data['password']),
+    //     ]); 
+    //     }
+        
+
     public function storeUser($data){
         $data['visible_password'] = $data['password'];
         $data['password'] = bcrypt($data['password']);
         $data['is_admin'] =0;
         return User::create($data);
     }
-
-
+    
     public function allUsers(){
         return User::latest()->paginate($this->limit);
     }
@@ -88,3 +96,5 @@ class User extends Authenticatable
         return User::find($id)->delete();
     }
 }
+
+
