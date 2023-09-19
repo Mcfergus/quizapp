@@ -21,7 +21,7 @@
                                     11</b> </a></li>
                               
                             </ul>
-                            <!--/.widget-nav-->
+
 
                             <ul class="widget widget-menu unstyled">
                                 
@@ -32,6 +32,18 @@
                               
                             </ul>
                             <!--/.widget-nav-->
+                            <!--/.widget-nav-->
+
+                            <ul class="widget widget-menu unstyled">
+                                
+                                <li><a href="{{route('lesson.create')}}"><i class="menu-icon icon-bullhorn"></i>Create Lesson </a>
+                                </li>
+                                <li><a href="{{route('lesson.index')}}"><i class="menu-icon icon-inbox"></i>View Lesson <b class="label green pull-right">
+                                    11</b> </a></li>
+                              
+                            </ul>
+                            <!--/.widget-nav-->
+                            
 
                             <ul class="widget widget-menu unstyled">
                                 

@@ -6,6 +6,7 @@ use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\isAdmin;
 use App\Http\Controllers\ExamController;
+use App\Http\Controllers\LessonController;
 
 
 /*
@@ -47,6 +48,7 @@ Route::middleware('isAdmin')->group(function(){
     Route::resource('quiz', QuizController::class);
     Route::resource('question', QuestionController::class);
     Route::resource('user', UserController::class);
+    Route::resource('lesson', LessonController::class);
     Route::get('/quiz/{id}/questions', [App\Http\Controllers\QuizController::class, 'question'])->name('quiz.question');
     Route::get('exam/assign', [App\Http\Controllers\ExamController::class, 'create'])->name('user.exam');
     Route::post('exam/assign', [App\Http\Controllers\ExamController::class, 'assignExam'])->name('exam.assign');

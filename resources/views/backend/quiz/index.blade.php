@@ -1,6 +1,6 @@
 @extends('backend.layouts.master')
 
-@section('title', 'create quiz')
+@section('title', 'View quiz')
 
 @section('content')
 

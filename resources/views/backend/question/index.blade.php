@@ -35,10 +35,13 @@
                                     @if(count($questions)>0)
                                     @foreach($questions as $key=>$question)
 									<tr>
+                    
 									  <td>{{$key+1}}</td>
 									  <td>{{$question->question}}</td>
-									  <td>{{$question->quiz->name}}</td>
+									  <td>{{optional($question->quiz)->name}}</td>
 									  <td>{{date('F d,Y' ,strtotime($question->created_at))}}</td>
+                    
+                    
 
                                       <td>
 
@@ -82,6 +85,7 @@
 
                             
 									</tr>
+                                    
                                     @endforeach
                                     
                                     @else

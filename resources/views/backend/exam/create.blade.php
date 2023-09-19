@@ -40,8 +40,27 @@
 			@enderror      
 
 			</div>
+
+
+			<!-- <div class="control-group">
+				<label class="control-lable" for="name">Choose Lesson</label>
+				<div class="controls"> 
+					<select name="quiz_id" class="span8 " required="">
+						@foreach(App\Models\Lesson::all() as $lesson)
+						<option value="{{$lesson->id}}">{{$lesson->title}}</option>
+						@endforeach
+
+					</select>
+				</div>
+			     @error('lesson')
+			    <span class="invalid-feedback" role="alert">
+			        <strong>{{ $message }}</strong>
+			    </span>
+			@enderror      
+
+			</div> -->
                  <div class="control-group">
-				<label class="control-lable" for="name">Choose Quiz</label>
+				<label class="control-lable" for="name">Choose User</label>
 				<div class="controls"> 
 					<select name="user_id" class="span8" required="">
 						@foreach(App\Models\User::where('is_admin','0')->get() as $user)
